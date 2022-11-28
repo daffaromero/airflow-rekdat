@@ -63,10 +63,9 @@ def run_twitter_etl():
             text = tweet.full_text
 
         refined_tweet = {"user": tweet.user.screen_name,
-                         'text': text
-                         }
+                         'text': text}
 
-        list.append(refined_tweet)
+        list.append(tweet)
 
     return list
     # df.to_csv(r'C:\Users\daffa\docker\airflow\refined_tweets.csv')
