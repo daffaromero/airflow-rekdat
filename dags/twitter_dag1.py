@@ -82,11 +82,11 @@ def write_csv(**kwargs):
     # Xcoms to get the list
     ti = kwargs['ti']
     df = ti.xcom_pull(task_ids='tweet_scrape_etl')
+    df = pd.DataFrame(df)
 
     try:
-        with open(str(csv_path), "a") as file:
-            writer = csv.writer(file, lineterminator='\n')
-            writer.writerows(df)
+        print(df)
+        df.to_csv(csv_path, index=False, header=True)
         return True
     except OSError as e:
         print(e)

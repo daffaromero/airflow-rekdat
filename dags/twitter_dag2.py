@@ -89,13 +89,22 @@ def parse_data(**context):
     return all_data
 
 
-csv_path = Path("/opt/airflow/data/tweetz.csv")
+csv_path = Path("/opt/airflow/data/tweets_crawl.csv")
 
 
-def save_data(**context):
-    value = context['task_instance'].xcom_pull(task_ids='parsing_data')
+def save_data(**kwargs):
+    # Xcoms to get the list
+    ti = kwargs['ti']
+    value = ti.xcom_pull(task_ids='parsing_data')
     df = pd.DataFrame(value)
-    return df.to_csv(r"/opt/airflow/data/tweetz.csv")
+
+    try:
+        print(df)
+        df.to_csv(csv_path, index=False, header=True)
+        return True
+    except OSError as e:
+        print(e)
+        return False
 
 
 t1 = PythonOperator(
