@@ -85,6 +85,15 @@ services:
             retries: 5
         restart: always
 
+    pgadmin4:
+        image: dpage/pgadmin4
+        restart: always
+        environment:
+        - PGADMIN_DEFAULT_EMAIL=daaffaromero@gmail.com
+        - PGADMIN_DEFAULT_PASSWORD=postgres
+        ports:
+        - "15432:80"
+
     redis:
         image: redis:latest
         expose:
