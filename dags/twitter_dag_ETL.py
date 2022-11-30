@@ -12,7 +12,7 @@ from airflow.utils.dates import days_ago
 from airflow.operators.python import PythonOperator
 from airflow.models.baseoperator import BaseOperator
 from airflow.utils.decorators import apply_defaults
-
+# from airflow.providers.postgres.operators.postgres import PostgresOperator
 
 consumer_key = 'xxhLZKqGabwbTAFU7WHPDa5Jl'
 consumer_secret = 'S3ir9SCmtThwqKyEcaFmZIXiaI1aC5BGImO8BBrJNtvGoqHiEO'
@@ -36,6 +36,16 @@ dag = DAG(
     schedule_interval=timedelta(days=1),
 )
 
+# Update connection string information
+host = "twitter-sentiment-analysis.postgres.database.azure.com"
+dbname = "twitter"
+user = "rekdat"
+password = "kelompok11!"
+sslmode = "require"
+
+ # Construct connection string
+conn_string = "host={0} user={1} dbname={2} password={3} sslmode={4}".format(host, user, dbname, password, sslmode)
+print("Connection established")
 
 def get_auth():
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
@@ -94,43 +104,36 @@ def save_data(**kwargs):
 
 
 def addtodb():
-    try:
-        conn = pg.connect(
-            "dbname='airflow' user='airflow' host='airflow-postgres-1' password='airflow'"
-        )
-    except Exception as error:
-        print(error)
+     try:
+         conn = pg.connect(conn_string)
+         cursor = conn.cursor()
+     except Exception as error:
+         print(error)
+         records = 0
 
-    path = "/opt/airflow/data/*.csv"
-    glob.glob(path)
-    for fname in glob.glob(path):
-        fname = fname.split('/')
-        csvname = fname[-1]
-        csvname = csvname.split('.')
-        tablename = str(csvname[0])
+    # path = "/opt/airflow/data/*.csv"
+    # glob.glob(path)
+    # for fname in glob.glob(path):
+    #     fname = fname.split('/')
+    #     csvname = fname[-1]
+    #     csvname = csvname.split('.')
+    #     tablename = str(csvname[0])
 
-    # create the table if it does not already exist
-        cursor = conn.cursor()
-        cursor.execute("""
-            CREATE TABLE IF NOT EXISTS tweets_""" + tablename + """ (
-                twitId varchar(100),
-                twitContent varchar(350),
-                userName varchar(50)
-            );
-        """
-                       )
-        conn.commit()
+    # # read the table
+     cursor.execute("SELECT * FROM tweets_crawl;")
+     conn.commit()
 
     # insert each csv row as a record in our database
-    with open('/opt/airflow/data/tweets_crawl_v2.csv', 'r') as f:
-        reader = csv.reader(f)
-        next(reader)
-        for row in reader:
-            cursor.execute(
-                "INSERT INTO tweets_tweets_crawl_v2 VALUES (%s, %s, %s)",
-                row
-            )
-    conn.commit()
+     cursor = conn.cursor()
+     with open('/opt/airflow/data/tweets_crawl_v2.csv', 'r') as f:
+         reader = csv.reader(f)
+         next(reader)
+         for row in reader:
+             cursor.execute(
+                 "INSERT INTO tweets_crawl VALUES (%s, %s, %s)",
+                 row
+             )
+     conn.commit()
 
 
 t1 = PythonOperator(
