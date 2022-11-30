@@ -1,6 +1,17 @@
 # airflow-rekdat
 
 Airflow imaage has been extended to include Python dependencies listed in requirements.txt.<br>
+
+Change the image line in docker-compose.yaml to this:
+```
+image: ${AIRFLOW_IMAGE_NAME:-extending_airflow:latest}
+```
+
+<b>Note: The Dockerfile has been set up for Airflow version 2.4.3.</b> Change this line to suit a different version of Airflow:
+```
+FROM apache/airflow:2.4.3 
+```
+
 Build the image with:
 ```bash
 $ docker build . --tag extending_airflow:latest
