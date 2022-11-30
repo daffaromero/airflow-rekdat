@@ -22,7 +22,7 @@ Then, to start the containers:
 $ docker-compose -f docker-compose.yaml up -d
 ```
 
-To access pgAdmin,
+To access local database via pgAdmin,
 <ol>
   <li>Go to https://localhost:15432</li>
   <li>Input the default email and password</li>
@@ -31,3 +31,8 @@ To access pgAdmin,
   <li>Set username and password to 'airflow'</li>
   <li>You can now access the table for the scraped Tweets.</li>
 </ol>
+
+To access Azure database via pgAdmin,
+<ul>
+  <li>Use the credentials listed in CREDENTIALS.md
+</ul>
