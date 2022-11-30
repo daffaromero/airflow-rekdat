@@ -18,8 +18,8 @@ password = "kelompok11!"
 ```
 
 ```
-consumer_key = 'xxhLZKqGabwbTAFU7WHPDa5Jl'
-consumer_secret = 'S3ir9SCmtThwqKyEcaFmZIXiaI1aC5BGImO8BBrJNtvGoqHiEO'
-access_key = '914125130946682880-a02PuQgJAfdYZsigqf8a9ppYY8vIgvG'
-access_secret = 'LG6OIGgezptevbdNbJdZPYmbEhooCGcji9R7bLlevQlOI'
+consumer_key = 'YOUR API KEY'
+consumer_secret = 'YOUR API SECRET'
+access_key = 'YOUR ACCESS TOKEN'
+access_secret = 'YOUR ACCESS TOKEN SECRET'
 ```
