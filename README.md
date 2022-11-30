@@ -1,6 +1,14 @@
 
 # End-to-end Data Engineering: World Cup 2022 Tweets Pipelining
 
+<a> <img src="https://img.shields.io/badge/scikit_learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white"/> </a>
+<img src="https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue">
+<img src="https://img.shields.io/badge/Kaggle-20BEFF?style=for-the-badge&logo=Kaggle&logoColor=white" />
+<img src="https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white" />
+<img src="https://img.shields.io/badge/microsoft%20azure-0089D6?style=for-the-badge&logo=microsoft-azure&logoColor=white" />
+<img src="https://img.shields.io/badge/Airflow-017CEE?style=for-the-badge&logo=Apache%20Airflow&logoColor=white"/>
+
+
 This repository contains a dockerized pipeline for collecting tweets extracted from two different sources, which are Twitter scraping and dataset sampling. The pipeline is based on airflow DAGs and the tweets are stored in Azure Database for PostgreSQL. We utilize the data from the warehouse as the input for sentiment analysis predictive modelling and fine tuning.
 
 ## Group 11
