@@ -1,6 +1,6 @@
 # airflow-rekdat
 
-Airflow imaage has been extended to include Python dependencies listed in requirements.txt.<br>
+Airflow image has been extended to include Python dependencies listed in requirements.txt.<br>
 
 Change the image line in docker-compose.yaml to this:
 ```
