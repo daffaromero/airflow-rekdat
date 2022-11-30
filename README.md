@@ -1,6 +1,19 @@
-# airflow-rekdat
 
-Airflow image has been extended to include Python dependencies listed in requirements.txt.<br>
+# End-to-end Data Engineering: World Cup 2022 Tweets Pipelining
+
+This repository contains a dockerized pipeline for collecting tweets extracted from two different sources, which are Twitter scraping and dataset sampling. The pipeline is based on airflow DAGs and the tweets are stored in Azure Database for PostgreSQL. We utilize the data from the warehouse as the input for sentiment analysis predictive modelling and fine tuning.
+
+## Group 11
+
+- [Wahyu Cahyo Wicaksono - 19/444077/TK/49273](https://www.github.com/whycw010)
+- [Aulia Nur Fajriyah - 20/456360/TK/50490](https://www.github.com/aulianurfajriyah)
+- [Daffa Muhammad Romero - 20/456363/TK/50493](https://www.github.com/daffaromero)
+- [Hafizha Ulinnuha Ahmad - 20/456365/TK/50495](https://www.github.com/hafizhaua)
+- [Mochammad Novaldy Pratama Hakim - 20/463606/TK/51598](https://www.github.com/novaldypratama)
+
+## Running the project
+
+Airflow image has been extended to include Python dependencies listed in requirements.txt.
 
 Change the image line in docker-compose.yaml to this:
 ```
@@ -23,16 +36,12 @@ $ docker-compose -f docker-compose.yaml up -d
 ```
 
 To access local database via pgAdmin,
-<ol>
-  <li>Go to https://localhost:15432</li>
-  <li>Input the default email and password</li>
-  <li>Add a new server.</li> 
-  <li>Set host to 'airflow-postgres-1'</li>
-  <li>Set username and password to 'airflow'</li>
-  <li>You can now access the table for the scraped Tweets.</li>
-</ol>
+- Go to https://localhost:15432
+- Input the default email and password
+- Add a new server. 
+- Set host to 'airflow-postgres-1'
+- Set username and password to 'airflow'
+- You can now access the table for the scraped Tweets.
 
 To access Azure database via pgAdmin,
-<ul>
-  <li>Use the credentials listed in CREDENTIALS.md
-</ul>
+- Use the credentials listed in CREDENTIALS.md
