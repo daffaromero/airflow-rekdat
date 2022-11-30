@@ -1,2 +1,5 @@
 logs/
 dags/__pycache__
+dags/twitter_dag_ETL.py
+
+data/sentiment140.csv
