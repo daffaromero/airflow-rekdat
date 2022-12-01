@@ -14,10 +14,10 @@ from airflow.models.baseoperator import BaseOperator
 from airflow.utils.decorators import apply_defaults
 # from airflow.providers.postgres.operators.postgres import PostgresOperator
 
-consumer_key = 'xxhLZKqGabwbTAFU7WHPDa5Jl'
-consumer_secret = 'S3ir9SCmtThwqKyEcaFmZIXiaI1aC5BGImO8BBrJNtvGoqHiEO'
-access_key = '914125130946682880-a02PuQgJAfdYZsigqf8a9ppYY8vIgvG'
-access_secret = 'LG6OIGgezptevbdNbJdZPYmbEhooCGcji9R7bLlevQlOI'
+consumer_key = ''
+consumer_secret = ''
+access_key = ''
+access_secret = ''
 
 default_args = {
     'owner': 'airflow',
@@ -43,9 +43,11 @@ user = "rekdat"
 password = "kelompok11!"
 sslmode = "require"
 
- # Construct connection string
-conn_string = "host={0} user={1} dbname={2} password={3} sslmode={4}".format(host, user, dbname, password, sslmode)
+# Construct connection string
+conn_string = "host={0} user={1} dbname={2} password={3} sslmode={4}".format(
+    host, user, dbname, password, sslmode)
 print("Connection established")
+
 
 def get_auth():
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
@@ -104,12 +106,12 @@ def save_data(**kwargs):
 
 
 def addtodb():
-     try:
-         conn = pg.connect(conn_string)
-         cursor = conn.cursor()
-     except Exception as error:
-         print(error)
-         records = 0
+    try:
+        conn = pg.connect(conn_string)
+        cursor = conn.cursor()
+    except Exception as error:
+        print(error)
+        records = 0
 
     # path = "/opt/airflow/data/*.csv"
     # glob.glob(path)
@@ -120,20 +122,20 @@ def addtodb():
     #     tablename = str(csvname[0])
 
     # # read the table
-     cursor.execute("SELECT * FROM tweets_crawl;")
-     conn.commit()
+    cursor.execute("SELECT * FROM tweets_crawl;")
+    conn.commit()
 
     # insert each csv row as a record in our database
-     cursor = conn.cursor()
-     with open('/opt/airflow/data/tweets_crawl_v2.csv', 'r') as f:
-         reader = csv.reader(f)
-         next(reader)
-         for row in reader:
-             cursor.execute(
-                 "INSERT INTO tweets_crawl VALUES (%s, %s, %s)",
-                 row
-             )
-     conn.commit()
+    cursor = conn.cursor()
+    with open('/opt/airflow/data/tweets_crawl_v2.csv', 'r') as f:
+        reader = csv.reader(f)
+        next(reader)
+        for row in reader:
+            cursor.execute(
+                "INSERT INTO tweets_crawl VALUES (%s, %s, %s)",
+                row
+            )
+    conn.commit()
 
 
 t1 = PythonOperator(

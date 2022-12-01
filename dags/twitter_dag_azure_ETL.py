@@ -14,10 +14,10 @@ from airflow.models.baseoperator import BaseOperator
 from airflow.utils.decorators import apply_defaults
 # from airflow.providers.postgres.operators.postgres import PostgresOperator
 
-consumer_key = 'xxhLZKqGabwbTAFU7WHPDa5Jl'
-consumer_secret = 'S3ir9SCmtThwqKyEcaFmZIXiaI1aC5BGImO8BBrJNtvGoqHiEO'
-access_key = '914125130946682880-a02PuQgJAfdYZsigqf8a9ppYY8vIgvG'
-access_secret = 'LG6OIGgezptevbdNbJdZPYmbEhooCGcji9R7bLlevQlOI'
+consumer_key = ''
+consumer_secret = ''
+access_key = ''
+access_secret = ''
 
 default_args = {
     'owner': 'airflow',
@@ -62,13 +62,13 @@ def get_data_search(**kwargs):
     query = "#WorldCup"
     api = get_auth()
     cursor = tweepy.Cursor(api.search_tweets, result_type='mixed',
-                           q=query, include_entities=True).items(100)
+                           q=query, include_entities=True).items(1500)
     c = 0
     for x in cursor:
         c = c + 1
         print(x)
         data.append(x)
-        if c == 100:
+        if c == 1500:
             break
     return data
 

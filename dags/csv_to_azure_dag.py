@@ -1,6 +1,6 @@
 # !! ATTENTION !!
 # 1. Download the dataset of sentiment140 (https://www.kaggle.com/datasets/kazanova/sentiment140)
-# 2. Add "training.1600000.processed.noemoticon.csv" in the first row of the CSV for headers
+# 2. Add "target,twitId,date,flag,userName,twitContent" without the quotes in the first row of the CSV for headers
 
 import psycopg2 as pg
 import psycopg2.extras as extras
@@ -26,15 +26,15 @@ dag = DAG(
     'csv_to_azure',
     default_args=default_args,
     description='load csv to databse DAG',
-    schedule_interval=timedelta(days=1),
+    schedule_interval=timedelta(hours=1),
 )
 
 # Update connection string information
-host = "twitter-sentiment-analysis.postgres.database.azure.com"
-dbname = "twitter"
-user = "rekdat"
-password = "kelompok11!"
-sslmode = "require"
+host = ""
+dbname = ""
+user = ""
+password = ""
+sslmode = ""
 
 conn_string = "host={0} user={1} dbname={2} password={3} sslmode={4}".format(
     host, user, dbname, password, sslmode)
@@ -47,7 +47,7 @@ def csv_to_db():
     # Fetch data from CSV of some rows and updates the CSV
     # Specify the file path of Sentiment140 CSV dataset
     path = '/opt/airflow/data/sentiment140.csv'
-    num_of_rows = 100
+    num_of_rows = 1000
 
     df_all = pd.read_csv(path, encoding='latin-1')
     # Get the row of 0-{num_of_rows} data
