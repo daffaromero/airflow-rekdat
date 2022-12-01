@@ -38,11 +38,11 @@ dag = DAG(
 )
 
 # Update connection string information
-host = "twitter-sentiment-analysis.postgres.database.azure.com"
-dbname = "twitter"
-user = "rekdat"
-password = "kelompok11!"
-sslmode = "require"
+host = ""
+dbname = ""
+user = ""
+password = ""
+sslmode = ""
 
 # Construct connection string
 conn_string = "host={0} user={1} dbname={2} password={3} sslmode={4}".format(
