@@ -43,6 +43,25 @@ Then, to start the containers:
 $ docker-compose -f docker-compose.yaml up -d
 ```
 
+Edit the DAG as such:
+- Insert your Twitter API credentials in dags/twitter_dag_azure_ETL.py, lines 17-20:
+```
+consumer_key = ''
+consumer_secret = ''
+access_key = ''
+access_secret = ''
+```
+
+- Insert database credentials in CREDENTIALS.md in dags/csv_to_azure_dag.py, lines 33-37:
+```
+# Update connection string information
+host = ""
+dbname = ""
+user = ""
+password = ""
+sslmode = ""
+```
+
 To access local database via pgAdmin,
 - Go to https://localhost:15432
 - Input the default email and password
