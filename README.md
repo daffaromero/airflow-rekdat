@@ -52,4 +52,7 @@ To access local database via pgAdmin,
 - You can now access the table for the scraped Tweets.
 
 To access Azure database via pgAdmin,
+- Add a new server.
+- Set host, username, and password
 - Use the credentials listed in CREDENTIALS.md
+- You can now access the table for the scraped Tweets (DAG ID: twitter_crawl_azure).
