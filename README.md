@@ -13,7 +13,6 @@ This repository contains a dockerized pipeline for collecting tweets extracted f
 
 ## Group 11
 
-- [Wahyu Cahyo Wicaksono - 19/444077/TK/49273](https://www.github.com/whycw010) (barely did anything, sorry not sorry)
 - [Aulia Nur Fajriyah - 20/456360/TK/50490](https://www.github.com/aulianurfajriyah)
 - [Daffa Muhammad Romero - 20/456363/TK/50493](https://www.github.com/daffaromero)
 - [Hafizha Ulinnuha Ahmad - 20/456365/TK/50495](https://www.github.com/hafizhaua)
